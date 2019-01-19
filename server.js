@@ -43,14 +43,29 @@ app.get("/scrape", function (req, res) {
         var result = {};
 
         // Grab title elements
-        $("div.views-field-title").each(function (i, element) {
+        // $("div.views-field-title").each(function (i, element) {
+        //     // Add the text, href of each link and save as properties of result object
+        //     result.headline = $(this)
+        //         .find("a")
+        //         .text();
+        //     result.link = $(this)
+        //         .find("a")
+        //         .attr("href");
+        
+        $("div.views-row").each(function (i, element) {
             // Add the text, href of each link and save as properties of result object
             result.headline = $(this)
+                .find(".views-field-title")
                 .find("a")
                 .text();
-            result.link = $(this)
+            result.link = "https://www.packagingdigest.com" + $(this)
+                .find(".views-field-title")
                 .find("a")
                 .attr("href");
+            result.description = $(this)
+                .find(".views-field-body")
+                .find("p")
+                .text();
 
             // Create a new Headline using "result" object built from scraping
             db.Headline.create(result)
