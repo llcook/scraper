@@ -25,6 +25,15 @@ app.use(express.json());
 // Public static folder
 app.use(express.static("public"));
 
+// // Handlebars
+// var exphbs = require("express-handlebars");
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// app.set("view engine", "handlebars");
+
+// // Import routes and give server access
+// var routes = require("./controllers/headlines.js");
+// app.use(routes);
+
 // Hook mongojs configuration to the db variable
 mongoose.connect("mongodb://localhost/newsscraper", { useNewUrlParser: true });
 
@@ -41,16 +50,6 @@ app.get("/scrape", function (req, res) {
 
         // Save empty result object
         var result = {};
-
-        // Grab title elements
-        // $("div.views-field-title").each(function (i, element) {
-        //     // Add the text, href of each link and save as properties of result object
-        //     result.headline = $(this)
-        //         .find("a")
-        //         .text();
-        //     result.link = $(this)
-        //         .find("a")
-        //         .attr("href");
         
         $("div.views-row").each(function (i, element) {
             // Add the text, href of each link and save as properties of result object
