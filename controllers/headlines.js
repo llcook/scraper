@@ -8,6 +8,10 @@ var db = require("../models");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
+///////////////////////////////////////////
+///////////////// ROUTES ////////////////// 
+///////////////////////////////////////////
+
 router.get("/", function(req, res) {
     res.render("index")
 });
