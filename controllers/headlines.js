@@ -53,8 +53,33 @@ router.get("/scrape", function (req, res) {
         });
 
         // Send a message to the client
-        res.send("Scrape complete!");
+        res.send("Scrape complete!")
     });
+});
+
+router.get("/saved", function (req, res) {
+    db.Headline.find({ saved: true })
+        .then(function (dbSaved) {
+            res.render("saved", {
+                article: dbSaved
+            });
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+});
+
+router.get("/saved/:id", function (req, res) {
+    db.Headline.update(req.body)
+        .then(function (dbHeadline) {
+            return db.Headline.findOneAndUpdate({ _id: req.params.id }, { $set: { saved: true } });
+        })
+        .then(function (dbHeadline) {
+            res.json(dbHeadline);
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
 });
 
 // Retrieve all articles from the db
