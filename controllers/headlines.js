@@ -12,10 +12,12 @@ var cheerio = require("cheerio");
 ///////////////// ROUTES ////////////////// 
 ///////////////////////////////////////////
 
+// Home
 router.get("/", function(req, res) {
     res.render("index")
 });
 
+// Scraper
 router.get("/scrape", function (req, res) {
     // First, we grab the body of the html with axios
     axios.get("https://www.packagingdigest.com/sustainable-packaging?qt-content_tabs=1#qt-content_tabs").then(function (response) {
@@ -57,6 +59,20 @@ router.get("/scrape", function (req, res) {
     });
 });
 
+// Retrieve all articles from the db
+router.get("/headlines", function (req, res) {
+    db.Headline.find({})
+        .then(function (dbHeadline) {
+            // If all articles successfully found, send back to client
+            res.json(dbHeadline);
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+});
+
+// Saved articles
+
 router.get("/saved", function (req, res) {
     db.Headline.find({ saved: true })
         .then(function (dbSaved) {
@@ -82,17 +98,9 @@ router.get("/saved/:id", function (req, res) {
         });
 });
 
-// Retrieve all articles from the db
-router.get("/headlines", function (req, res) {
-    db.Headline.find({})
-        .then(function (dbHeadline) {
-            // If all articles successfully found, send back to client
-            res.json(dbHeadline);
-        })
-        .catch(function (err) {
-            res.json(err);
-        });
-});
+/////////////////////////////////////////////
+// NOTES FUNCTIONALITY
+/////////////////////////////////////////////
 
 // Route for grabbing specific Headline by ID and populate it with its note
 router.get("/headlines/:id", function (req, res) {
@@ -129,5 +137,8 @@ router.post("/headlines/:id", function (req, res) {
             res.json(err);
         });
 });
+
+/////////////////////////////////////////////
+/////////////////////////////////////////////
 
 module.exports = router;

@@ -1,11 +1,20 @@
-// Grab articles as JSON
-$.getJSON("/headlines", function (data) {
-    // For each one
-    for (var i = 0; i < data.length; i++) {
-        // Display info on page
-        $("#headlines").append("<div class='article'><h4 class='headline' data-id='" + data[i]._id + "'><a href='" + data[i].link + "'>" + data[i].headline + "</a></h4><a id='save-btn' href=#>Save</a><p class='description'>" + data[i].description + "</p></div>");
-    }
-});
+/////////////////////////////////////////////
+// SAVE ARTICLES
+/////////////////////////////////////////////
+
+    // ADD save-btn CLICK FUNCTIONALITY
+    // ON CLICK, POST ARTICLE DATA TO JSON OBJECT
+    // JSON OBJECT IS ROUTED TO FRONT END /saved
+
+// DELETE SAVED ARTICLES
+
+/////////////////////////////////////////////
+// NOTES FUNCTIONALITY
+/////////////////////////////////////////////
+
+// !!!!!!!!!!!! RECONFIGURE
+
+// SHOW NOTES
 
 // When user clicks p tag
 $(document).on("click", "p", function () {
@@ -41,6 +50,8 @@ $(document).on("click", "p", function () {
         });
 });
 
+// ADD NOTES
+
 // When you click savenote button
 $(document).on("click", "#savenote", function () {
     // Grab ID associated with article from submit button
@@ -68,3 +79,6 @@ $(document).on("click", "#savenote", function () {
     $("#titleinput").val("");
     $("bodyinput").val("");
 });
+
+/////////////////////////////////////////////
+/////////////////////////////////////////////
