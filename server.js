@@ -2,9 +2,6 @@ var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-// Require all models
-var db = require("./models");
-
 // Define port
 var PORT = 8080;
 
@@ -26,9 +23,10 @@ var app = express();
     app.engine("handlebars", exphbs({ defaultLayout: "main" }));
     app.set("view engine", "handlebars");
 
-    // Import routes and give server access
-    var routes = require("./controllers/headlines.js");
-    app.use(routes);
+// Import routes and give server access
+var api = require("./controllers/api.js");
+
+app.use(api);
 
 // Hook mongojs configuration to the db variable
 mongoose.connect("mongodb://localhost/newsscraper", { useNewUrlParser: true });
