@@ -100,7 +100,22 @@ router.get("/save/:id", function (req, res) {
         });
 });
 
-///////////////// NOTES ////////////////// 
+// Unsave article
+
+router.get("/unsave/:id", function (req, res) {
+    db.Headline.update(req.body)
+        .then(function (dbHeadline) {
+            return db.Headline.findOneAndUpdate({ _id: req.params.id }, {$set: { saved: false } });
+        })
+        .then(function (dbHeadline) {
+            res.json(dbHeadline);
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+});
+
+///////////////// NOTES //////////////////
 
 // Route for grabbing specific Headline by ID and populate it with its note
 router.get("/headlines/:id", function (req, res) {

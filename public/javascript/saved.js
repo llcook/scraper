@@ -13,12 +13,26 @@ $(document).on("click", "#save-btn", function () {
         url: "/save/" + thisId,
 
         success: function(response) {
-            console.log("Article saved");
+            console.log("Article saved: " + thisId);
         }
     })
 });
 
 // DELETE SAVED ARTICLES
+
+$(document).on("click", "#unsave", function() {
+    var thisId = $(this).attr("data-id");
+    console.log(thisId);
+
+    $.ajax({
+        method: "GET",
+        url: "/unsave/" + thisId,
+
+        success: function(response) {
+            console.log("Article unsaved: " + thisId);
+        }
+    })
+})
 
 /////////////////////////////////////////////
 // NOTES FUNCTIONALITY

@@ -7,3 +7,8 @@
 #wrapper {
     margin-top: 60px;
 }
+
+#save-btn,
+#unsave {
+    cursor: pointer;
+}
