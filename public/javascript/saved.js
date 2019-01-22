@@ -2,9 +2,21 @@
 // SAVE ARTICLES
 /////////////////////////////////////////////
 
-    // ADD save-btn CLICK FUNCTIONALITY
-    // ON CLICK, POST ARTICLE DATA TO JSON OBJECT
-    // JSON OBJECT IS ROUTED TO FRONT END /saved
+$(document).on("click", "#save-btn", function () {
+    // POST ARTICLE TO JSON OBJECT
+    // JSON SAVED OBJECT ROUTED TO FRONT END /saved
+    var thisId = $(this).attr("data-id");
+    console.log(thisId);
+
+    $.ajax({
+        method: "GET",
+        url: "/save/" + thisId,
+
+        success: function(response) {
+            console.log("Article saved");
+        }
+    })
+});
 
 // DELETE SAVED ARTICLES
 
@@ -17,38 +29,38 @@
 // SHOW NOTES
 
 // When user clicks p tag
-$(document).on("click", "p", function () {
-    // Empty notes from note section
-    $("#notes").empty();
-    // Save ID from p tag
-    var thisId = $(this).attr("data-id");
+// $(document).on("click", "p", function () {
+//     // Empty notes from note section
+//     $("#notes").empty();
+//     // Save ID from p tag
+//     var thisId = $(this).attr("data-id");
 
-    // Now make ajax call for the Headline
-    $.ajax({
-        method: "GET",
-        url: "/headlines/" + thisId
-    })
-        // Then add note info to the page
-        .then(function (data) {
-            console.log(data);
-            // Headline of article
-            $("#notes").append("<h2>" + data.headline + "</h2>");
-            // Input to enter new headline
-            $("#notes").append("<input id='titleinput' name='title' >");
-            // Textarea to add new note body
-            $("#notes").append("<textarea id='bodyinput' name='body'></texarea>");
-            // Button to submit new note with Headline ID saved to it
-            $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save note</button>");
+//     // Now make ajax call for the Headline
+//     $.ajax({
+//         method: "GET",
+//         url: "/headlines/" + thisId
+//     })
+//         // Then add note info to the page
+//         .then(function (data) {
+//             console.log(data);
+//             // Headline of article
+//             $("#notes").append("<h2>" + data.headline + "</h2>");
+//             // Input to enter new headline
+//             $("#notes").append("<input id='titleinput' name='title' >");
+//             // Textarea to add new note body
+//             $("#notes").append("<textarea id='bodyinput' name='body'></texarea>");
+//             // Button to submit new note with Headline ID saved to it
+//             $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save note</button>");
 
-            //If there's a note in the article
-            if (data.note) {
-                // Place note title in title input
-                $("#titleinput").val(data.note.title);
-                // Place note body in body textarea
-                $("#bodyinput").val(data.note.body);
-            }
-        });
-});
+//             //If there's a note in the article
+//             if (data.note) {
+//                 // Place note title in title input
+//                 $("#titleinput").val(data.note.title);
+//                 // Place note body in body textarea
+//                 $("#bodyinput").val(data.note.body);
+//             }
+//         });
+// });
 
 // ADD NOTES
 

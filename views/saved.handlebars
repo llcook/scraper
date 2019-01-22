@@ -3,6 +3,13 @@
 <div class="container-fluid" id="wrapper">
     <h1>Wow!</h1>
     <h2><i>Saved Articles</i></h2>
+
+    {{#each saved}}
+        <h4>{{this.headline}}</h4>
+        <p>{{this.description}}</p>
+    {{/each}}
+
+
     <div id="saved"></div>
     <div id="notes"></div>
 </div>
