@@ -18,7 +18,7 @@ router.get("/saved", function(req, res) {
     db.Headline
         .find({ saved: true })
         .populate("note")
-        .then(function(articles) {
+        .then(function(headlines) {
             res.render("saved", { headlines });
         })
         .catch(function (err) {
