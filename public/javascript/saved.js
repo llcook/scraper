@@ -13,25 +13,29 @@ $(".unsaved").on("click", "#save-btn", function () {
         data: selectedHead
     }).then(function(data) {
         if (data.saved) {
-            console.log("Headline saved: " + data.Headline);
+            console.log("Headline saved: " + selectedHead.headlineId);
         }
     })
 });
 
 // Delete saved articles
-$(document).on("click", "#unsave", function () {
+$(".saved").on("click", "#delete-btn", function () {
     // const thisId = $(this).attr("data-id");
     // console.log(thisId);
-    var thisHeadline = $(this).parents("li").data();
-    console.log(thisHeadline);
+    var selectedHead = $(this).parents("li").data();
+    console.log(selectedHead);
 
-    // $.ajax({
-    //     method: "GET",
-    //     url: "/" + thisId,
-    //     success: function (response) {
-    //         console.log("Article unsaved: " + thisId);
-    //     }
-    // })
+    selectedHead.saved = false;
+
+    $.ajax({
+        method: "PUT",
+        url: "/api/headlines/" + selectedHead.headlineId,
+        data: selectedHead
+    }).then(function(data) {
+        if (data.saved) {
+            console.log("Headline unsaved: " + selectedHead.headlineId);
+        }
+    })
 })
 
 /////////////////////////////////////////////
