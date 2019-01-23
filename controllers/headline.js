@@ -67,7 +67,7 @@ module.exports = {
         db.Headline
             .findById(req.params.id)
             .populate("note")
-            .then(function(headline) {
+            .then(function(headline) { 
                 res.json(headline);
             });
     },
@@ -79,5 +79,5 @@ module.exports = {
                 res.json(headline);
             });
     },
-    deleteOne: function (req, res) { }
+    deleteOne: function (req, res) {}
 }
