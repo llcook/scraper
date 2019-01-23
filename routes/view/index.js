@@ -8,8 +8,8 @@ const db = require("../../models");
 router.get("/", function(req, res) {
     db.Headline
         .find({ saved: false })
-        .then(function(headlines) {
-            res.render("index", { headlines });
+        .then(function(dbHeadlines) {
+            res.render("index", { headlines: dbHeadlines });
         })
 });
 
@@ -18,8 +18,8 @@ router.get("/saved", function(req, res) {
     db.Headline
         .find({ saved: true })
         .populate("note")
-        .then(function(headlines) {
-            res.render("saved", { headlines });
+        .then(function(dbHeadlines) {
+            res.render("saved", { headlines: dbHeadlines });
         })
         .catch(function (err) {
             console.log(err);

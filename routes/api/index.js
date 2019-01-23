@@ -1,4 +1,4 @@
-// ROUTES/API
+// ROUTES/API/INDEX.JS
 
 const router = require("express").Router();
 const noteRoutes = require("./notes");

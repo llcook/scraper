@@ -1,37 +1,37 @@
-/////////////////////////////////////////////
-// SAVE ARTICLES
-/////////////////////////////////////////////
-
+// Save articles
 $(".unsaved").on("click", "#save-btn", function () {
     // POST ARTICLE TO JSON OBJECT
     // JSON SAVED OBJECT ROUTED TO FRONT END /saved
-    const thisId = $(this).closest("li").attr("data-headline-id");
-    console.log(thisId);
+    var selectedHead = $(this).parents("li").data();
+    console.log(selectedHead);
+
+    selectedHead.saved = true;
 
     $.ajax({
-        method: "GET",
-        url: "/" + thisId,
-
-        success: function(response) {
-            console.log("Article saved: " + thisId);
+        method: "PUT",
+        url: "/api/headlines/" + selectedHead.headlineId,
+        data: selectedHead
+    }).then(function(data) {
+        if (data.saved) {
+            console.log("Headline saved: " + data.Headline);
         }
     })
 });
 
-// DELETE SAVED ARTICLES
+// Delete saved articles
+$(document).on("click", "#unsave", function () {
+    // const thisId = $(this).attr("data-id");
+    // console.log(thisId);
+    var thisHeadline = $(this).parents("li").data();
+    console.log(thisHeadline);
 
-$(document).on("click", "#unsave", function() {
-    const thisId = $(this).attr("data-id");
-    console.log(thisId);
-
-    $.ajax({
-        method: "GET",
-        url: "/unsave/" + thisId,
-
-        success: function(response) {
-            console.log("Article unsaved: " + thisId);
-        }
-    })
+    // $.ajax({
+    //     method: "GET",
+    //     url: "/" + thisId,
+    //     success: function (response) {
+    //         console.log("Article unsaved: " + thisId);
+    //     }
+    // })
 })
 
 /////////////////////////////////////////////
@@ -79,32 +79,29 @@ $(document).on("click", "#unsave", function() {
 // ADD NOTES
 
 // When you click savenote button
-$(document).on("click", "#savenote", function () {
-    // Grab ID associated with article from submit button
-    const thisId = $(this).attr("data-id");
+// $(document).on("click", "#savenote", function () {
+//     // Grab ID associated with article from submit button
+//     const thisId = $(this).attr("data-id");
 
-    // Run POST request to change note, using what's entered in inputs
-    $.ajax({
-        method: "POST",
-        url: "/headlines/" + thisId,
-        data: {
-            // Value taken from title input
-            title: $("#titleinput").val(),
-            // Value taken from note textarea
-            body: $("#bodyinput").val()
-        }
-    })
-        .then(function (data) {
-            // Log the response
-            console.log(data);
-            // Empty notes section
-            $("#notes").empty();
-        });
+//     // Run POST request to change note, using what's entered in inputs
+//     $.ajax({
+//         method: "POST",
+//         url: "/headlines/" + thisId,
+//         data: {
+//             // Value taken from title input
+//             title: $("#titleinput").val(),
+//             // Value taken from note textarea
+//             body: $("#bodyinput").val()
+//         }
+//     })
+//         .then(function (data) {
+//             // Log the response
+//             console.log(data);
+//             // Empty notes section
+//             $("#notes").empty();
+//         });
 
-    // And remove values entered in input + textarea for note entry
-    $("#titleinput").val("");
-    $("bodyinput").val("");
-});
-
-/////////////////////////////////////////////
-/////////////////////////////////////////////
+//     // And remove values entered in input + textarea for note entry
+//     $("#titleinput").val("");
+//     $("bodyinput").val("");
+// });

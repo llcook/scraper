@@ -1,4 +1,4 @@
- const db = require("../models");
+const db = require("../models");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
@@ -74,7 +74,7 @@ module.exports = {
     update: function (req, res) {
         console.log("req.body", req.body);
         db.Headline
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true })
             .then(function(headline) {
                 res.json(headline);
             });
