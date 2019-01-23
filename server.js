@@ -1,12 +1,12 @@
-var express = require("express");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+const express = require("express");
+const logger = require("morgan");
+const mongoose = require("mongoose");
 
 // Define port
-var PORT = 8080;
+const PORT = 8080;
 
 // Initialize express
-var app = express();
+const app = express();
 
 // Configure middleware
 
@@ -19,12 +19,12 @@ var app = express();
     app.use(express.static("public"));
 
 // Handlebars
-    var exphbs = require("express-handlebars");
+    const exphbs = require("express-handlebars");
     app.engine("handlebars", exphbs({ defaultLayout: "main" }));
     app.set("view engine", "handlebars");
 
 // Import routes and give server access
-var routes = require("./routes");
+const routes = require("./routes");
 
 app.use(routes);
 

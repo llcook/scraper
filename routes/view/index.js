@@ -1,8 +1,8 @@
 // ROUTES/VIEW/INDEX.JS
 
-var router = require("express").Router();
+const router = require("express").Router();
 
-var db = require("../../models");
+const db = require("../../models");
 
 // Homepage render with all articles
 router.get("/", function(req, res) {

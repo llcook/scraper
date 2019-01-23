@@ -3,7 +3,16 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 module.exports = {
-    clear: function (req, res) { },
+    clear: function (req, res) {
+        db.Headline
+            .deleteMany({})
+            .then(function(headlines) {
+                return db.Note.deleteMany({});
+            })
+            .then(function() {
+                res.send("All headlines and notes deleted.");
+            })
+    },
     scrape: function (req, res) {
         axios.get("https://www.packagingdigest.com/sustainable-packaging?qt-content_tabs=1#qt-content_tabs").then(function (response) {
             // Then load that into cheerio and save to $ for shorthand selector
@@ -51,10 +60,24 @@ module.exports = {
                 res.json(dbHeadline);
             })
             .catch(function (err) {
-                console(err);
+                res.json(err);
             });
     },
-    findOne: function (req, res) { },
-    update: function (req, res) { },
+    findOne: function (req, res) {
+        db.Headline
+            .findById(req.params.id)
+            .populate("note")
+            .then(function(headline) {
+                res.json(headline);
+            });
+    },
+    update: function (req, res) {
+        console.log("req.body", req.body);
+        db.Headline
+            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .then(function(headline) {
+                res.json(headline);
+            });
+    },
     deleteOne: function (req, res) { }
 }

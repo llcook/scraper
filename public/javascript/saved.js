@@ -5,7 +5,7 @@
 $(document).on("click", "#save-btn", function () {
     // POST ARTICLE TO JSON OBJECT
     // JSON SAVED OBJECT ROUTED TO FRONT END /saved
-    var thisId = $(this).attr("data-id");
+    const thisId = $(this).attr("data-id");
     console.log(thisId);
 
     $.ajax({
@@ -21,7 +21,7 @@ $(document).on("click", "#save-btn", function () {
 // DELETE SAVED ARTICLES
 
 $(document).on("click", "#unsave", function() {
-    var thisId = $(this).attr("data-id");
+    const thisId = $(this).attr("data-id");
     console.log(thisId);
 
     $.ajax({
@@ -81,7 +81,7 @@ $(document).on("click", "#unsave", function() {
 // When you click savenote button
 $(document).on("click", "#savenote", function () {
     // Grab ID associated with article from submit button
-    var thisId = $(this).attr("data-id");
+    const thisId = $(this).attr("data-id");
 
     // Run POST request to change note, using what's entered in inputs
     $.ajax({

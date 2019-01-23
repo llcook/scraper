@@ -1,10 +1,10 @@
-// ROUTES ROOT
+// ROUTES/INDEX.JS
 
 // Require router functionality from Express
 const router = require("express").Router();
 
 // Require route directories
-// It will look for index.js file in the root directory
+// It will look for index.js file in each directory
 // (And index.js requires the other files in that directory)
 const apiRoutes = require("./api");
 const viewRoutes = require("./view");

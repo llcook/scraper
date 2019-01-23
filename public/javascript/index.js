@@ -1,6 +1,4 @@
-/////////////////////////////////////////////
-// DISPLAY SCRAPED ARTICLES
-/////////////////////////////////////////////
+// PUBLIC/INDEX/JAVASCRIPT/INDEX.JS
 
 // Grab articles as JSON
 $.getJSON("/api/headlines/all", function (data) {
