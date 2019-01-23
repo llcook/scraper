@@ -12,9 +12,20 @@ var cheerio = require("cheerio");
 ///////////////// ROUTES ////////////////// 
 ///////////////////////////////////////////
 
-router.get("/", function(req, res) {
-    res.render("index")
-});
+// INSTEAD:
+// move routes to routes directory
+// create controllers
+// require axios, cheerio, db(models)
+// module.exports = {clear, scrape...}
+
+// WITHIN NEW ROUTES DIRECTORY: you refer to, e.g.
+// router.get("/all", noteController.findAll);
+// and at end, module.exports = router;
+// require express, /notes, /headlines (depending on route)
+
+// router.get("/", function(req, res) {
+//     res.render("index")
+// });
 
 ///////////////// SCRAPER ///////////////// 
 
@@ -55,7 +66,8 @@ router.get("/scrape", function (req, res) {
         });
 
         // Send a message to the client
-        res.send("Scrape complete!")
+        // RELOAD THE PAGE INSTEAD OF THIS RES.SEND
+        res.redirect("index");
     });
 });
 
@@ -74,17 +86,17 @@ router.get("/headlines", function (req, res) {
 ///////////////// SAVED ////////////////// 
 
 // Load saved articles
-router.get("/saved", function (req, res) {
-    db.Headline.find({ saved: true })
-        .then(function (dbSaved) {
-            res.render("saved", {
-                saved: dbSaved
-            });
-        })
-        .catch(function (err) {
-            console.log(err);
-        });
-});
+// router.get("/saved", function (req, res) {
+//     db.Headline.find({ saved: true })
+//         .then(function (dbSaved) {
+//             res.render("saved", {
+//                 saved: dbSaved
+//             });
+//         })
+//         .catch(function (err) {
+//             console.log(err);
+//         });
+// });
 
 // Save article
 router.get("/save/:id", function (req, res) {

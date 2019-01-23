@@ -24,9 +24,9 @@ var app = express();
     app.set("view engine", "handlebars");
 
 // Import routes and give server access
-var api = require("./controllers/api.js");
+var routes = require("./routes");
 
-app.use(api);
+app.use(routes);
 
 // Hook mongojs configuration to the db variable
 mongoose.connect("mongodb://localhost/newsscraper", { useNewUrlParser: true });

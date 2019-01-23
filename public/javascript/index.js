@@ -3,7 +3,7 @@
 /////////////////////////////////////////////
 
 // Grab articles as JSON
-$.getJSON("/headlines", function (data) {
+$.getJSON("/api/headlines/all", function (data) {
     // For each one
 
     // LIMIT RESULTS TO 10 (replace data.length)
