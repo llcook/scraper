@@ -8,26 +8,6 @@ var db = require("../models");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
-///////////////////////////////////////////
-///////////////// ROUTES ////////////////// 
-///////////////////////////////////////////
-
-
-///////////////// SAVED ////////////////// 
-
-// Load saved articles
-router.get("/saved", function (req, res) {
-    db.Headline.find({ saved: true })
-        .then(function (dbSaved) {
-            res.render("saved", {
-                saved: dbSaved
-            });
-        })
-        .catch(function (err) {
-            console.log(err);
-        });
-});
-
 // Save article
 router.get("/save/:id", function (req, res) {
     db.Headline.update(req.body)

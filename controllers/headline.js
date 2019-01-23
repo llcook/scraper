@@ -1,4 +1,4 @@
-const db = require("../models");
+ const db = require("../models");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
@@ -79,5 +79,12 @@ module.exports = {
                 res.json(headline);
             });
     },
-    deleteOne: function (req, res) {}
-}
+    deleteOne: function (req, res) {
+        db.Headline
+            .deleteOne({
+                _id: req.params.id
+            }).then(function(headline) {
+                res.json(headline);
+            });
+    }
+};

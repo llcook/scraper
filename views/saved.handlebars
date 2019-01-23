@@ -4,7 +4,7 @@
 
     <ul class="saved">
         {{#each headlines}}
-        <li data-article-id={{_id}}>>
+        <li data-headline-id={{_id}}>>
             {{#if note}}
             <div class="note" data-note-id={{note._id}}>Notes: {{note.text}}</div>
             <button id="editNote">Edit Note</button>

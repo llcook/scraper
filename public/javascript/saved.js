@@ -2,15 +2,15 @@
 // SAVE ARTICLES
 /////////////////////////////////////////////
 
-$(document).on("click", "#save-btn", function () {
+$(".unsaved").on("click", "#save-btn", function () {
     // POST ARTICLE TO JSON OBJECT
     // JSON SAVED OBJECT ROUTED TO FRONT END /saved
-    const thisId = $(this).attr("data-id");
+    const thisId = $(this).closest("li").attr("data-headline-id");
     console.log(thisId);
 
     $.ajax({
         method: "GET",
-        url: "/save/" + thisId,
+        url: "/" + thisId,
 
         success: function(response) {
             console.log("Article saved: " + thisId);
