@@ -1,13 +1,17 @@
 <div class="container-fluid" id="wrapper">
-    <h1>Wow!</h1>
-    <h2><i>Here's a news scraper by LLC.</i></h2>
+    <h2><i>Scraped Articles</i></h2>
 
     <ul class="unsaved">
         {{#each headlines}}
-            <li data-headline-id={{_id}}>
+
+            <li data-headline-id={{_id}} class="list-group-item">
+        
                 <div><a href={{link}} target="_blank">{{headline}}</a></div>
+        
                 <div>{{description}}</div>
-                <button id="save-btn">Save</button>
+        
+                <button id="save-btn">&hearts;</button>
+        
             </li>
         {{/each}}
     </ul>

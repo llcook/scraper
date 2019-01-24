@@ -1,29 +1,33 @@
 <div class="container-fluid" id="wrapper">
-    <h1>Wow!</h1>
     <h2><i>Saved Articles</i></h2>
 
     <ul class="saved">
         {{#each headlines}}
-        <li data-headline-id={{_id}}>
-            <div><a href={{link}} target="_blank">{{headline}}</a></div>
+
+        <li data-headline-id={{_id}} class="list-group-item">
+
+            <button id="delete-btn">&bull;</button>
+            <div id="savedHeadline"><a href={{link}} target="_blank">{{headline}}</a></div>
+
             <div>{{description}}</div>
+
             {{#if note}}
             <div class="note" data-note-id={{note._id}}>Notes: {{note.text}}</div>
             <button id="editNote">Edit Note</button>
             <form id="editForm">
                 <input class="text" placeholder="Write note here" />
-                <button type="submit">Add Note</button>
+                <button type="submit">Edit Note</button>
             </form>
             {{/if}}
+
             {{#unless note}}
-            <button class="addNote">Add Note</button>
             <form class="addForm">
                 <input class="text" placeholder="Write note here" />
-                <button type="submit">Add Note</button>
+                <button id="submit-note" type="submit">Add Note</button>
             </form>
             {{/unless}}
-            <button id="delete-btn">Remove from Saved</button>
         </li>
+
         {{/each}}
     </ul>
 </div>

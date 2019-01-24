@@ -1,11 +1,10 @@
-/* body {
+body {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/e8/Amazon_jungle_from_above.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-} */
-
-#wrapper {
-    margin-top: 60px;
+    height: 100%;
+    overscroll-behavior: none;
+    
 }
 
 #save-btn,
@@ -13,6 +12,35 @@
     cursor: pointer;
 }
 
+#save-btn,
+#save-btn>a:visited,
+#save-btn:active {
+    border: none;
+    color:hotpink;
+}
+
+#delete-btn {
+    border: none;
+    color: red;
+    display: inline;
+}
+
+#savedHeadline {
+    display: inline;
+}
+
 ul {
     list-style-type: none;
+    padding-left: 0;
+}
+
+#wrapper {
+    margin-top: 80px;
+    margin-bottom: 130px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.nav-item {
+    margin-left: 30px;
 }
