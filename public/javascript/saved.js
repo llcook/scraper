@@ -18,3 +18,4 @@ $(".saved").on("click", "#delete-btn", function () {
     })
 })
 
+// Add notes function
