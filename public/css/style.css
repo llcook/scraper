@@ -20,12 +20,6 @@ body {
     display: inline;
 }
 
-#delete-btn {
-    border: none;
-    color: red;
-    display: inline;
-}
-
 #savedHeadline {
     display: inline;
 }

@@ -2,13 +2,15 @@
 
 // Save articles
 $(".unsaved").on("click", "#save-btn", function () {
-    // POST ARTICLE TO JSON OBJECT
-    // JSON SAVED OBJECT ROUTED TO FRONT END /saved
+
+    // Find the headline ID
     const selectedHead = $(this).parents("li").data();
     console.log(selectedHead);
 
+    // Change its saved boolean
     selectedHead.saved = true;
 
+    // Update the object
     $.ajax({
         method: "PUT",
         url: "/api/headlines/" + selectedHead.headlineId,

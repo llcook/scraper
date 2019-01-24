@@ -10,6 +10,9 @@
             <div class="mb-2">{{description}}</div>
 
             {{#if note}}
+
+            {{!-- Edit note: button trigger modal --}}
+            
             <div class="note" data-note-id={{note._id}}>Notes: {{note.text}}</div>
             <button id="editNote">Edit Note</button>
             <form id="editForm">
@@ -20,12 +23,12 @@
 
             {{#unless note}}
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Notes</button>
+            <!-- Add note: button trigger modal -->
+            <button id="notes-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Notes</button>
 
             {{/unless}}
 
-            <button type="button" class="btn btn-info">Remove</button>
+            <button id="delete-btn" type="button" class="btn btn-info">Remove</button>
         </li>
 
         {{/each}}
