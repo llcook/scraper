@@ -16,7 +16,8 @@ body {
 #save-btn>a:visited,
 #save-btn:active {
     border: none;
-    color:hotpink;
+    color: green;
+    display: inline;
 }
 
 #delete-btn {

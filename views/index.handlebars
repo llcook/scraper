@@ -1,18 +1,17 @@
 <div class="container-fluid" id="wrapper">
-    <h2><i>Scraped Articles</i></h2>
+    <h2 class="ml-4"><i>Articles</i></h2>
 
     <ul class="unsaved">
         {{#each headlines}}
 
-            <li data-headline-id={{_id}} class="list-group-item">
-        
-                <div><a href={{link}} target="_blank">{{headline}}</a></div>
-        
-                <div>{{description}}</div>
-        
-                <button id="save-btn">&hearts;</button>
-        
-            </li>
+        <li data-headline-id={{_id}} class="list-group-item">
+
+            <h5><a href={{link}} target="_blank">{{headline}}</a>
+            <button id="save-btn">&hearts;</button></h5>
+
+            <div>{{description}}</div>
+
+        </li>
         {{/each}}
     </ul>
 </div>
